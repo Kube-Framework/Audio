@@ -5,9 +5,10 @@
 
 #pragma once
 
-#include <Kube/Core/Utils.hpp>
+#include <Kube/Core/StaticSafeAllocator.hpp>
 
 namespace kF::Audio
 {
-
+    /** @brief Allocator of the audio library */
+    using AudioAllocator = Core::DefaultStaticAllocator;
 }
