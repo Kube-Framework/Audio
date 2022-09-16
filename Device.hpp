@@ -26,6 +26,7 @@ namespace kF::Audio
     {
         std::uint32_t sampleRate;
         std::uint32_t blockSize;
+        bool stereo {};
     };
 }
 

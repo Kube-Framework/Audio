@@ -22,7 +22,7 @@ Audio::Device::Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceS
     const SDL_AudioSpec desiredSpecs {
         .freq = static_cast<int>(deviceSpecs.sampleRate),
         .format = AUDIO_F32,
-        .channels = 2,
+        .channels = deviceSpecs.stereo ? 2 : 1,
         .samples = static_cast<std::uint16_t>(deviceSpecs.blockSize),
         .callback = [](void * const device, std::uint8_t * const data, const int blockSize) {
             reinterpret_cast<Device *>(device)->onAudioCallback(
