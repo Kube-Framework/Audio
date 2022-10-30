@@ -26,7 +26,7 @@ Audio::Device::Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceS
         .samples = static_cast<std::uint16_t>(deviceSpecs.blockSize),
         .callback = [](void * const device, std::uint8_t * const data, const int blockSize) {
             reinterpret_cast<Device *>(device)->onAudioCallback(
-                reinterpret_cast<float * const>(data),
+                reinterpret_cast<float *>(data),
                 static_cast<std::uint32_t>(blockSize)
             );
         },
