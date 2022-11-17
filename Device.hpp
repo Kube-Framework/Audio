@@ -38,7 +38,7 @@ public:
     virtual ~Device(void) noexcept;
 
     /** @brief Constructor */
-    Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceSpecs) noexcept;
+    Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceSpecs, const bool isCapture) noexcept;
 
 
     /** @brief Start the device */
@@ -50,8 +50,9 @@ public:
 
 protected:
     /** @brief Virtual audio callback */
-    virtual void onAudioCallback(float * const data, const std::uint32_t blockSize) const noexcept = 0;
+    virtual void onAudioCallback(float * const data, const std::uint32_t channelSampleCount, const bool stereo) const noexcept = 0;
 
 
     std::uint32_t _id {};
+    bool _stereo {};
 };

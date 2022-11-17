@@ -3,12 +3,14 @@ find_package(SDL2 REQUIRED)
 kube_add_library(Audio
     SOURCES
         Base.hpp
-        Manager.hpp
-        Manager.cpp
-        Output.hpp
-        Output.cpp
-        Input.hpp
+        Device.cpp
+        Device.hpp
         Input.cpp
+        Input.hpp
+        Manager.cpp
+        Manager.hpp
+        Output.cpp
+        Output.hpp
 
     LIBRARIES
         Core

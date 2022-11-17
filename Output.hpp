@@ -19,7 +19,7 @@ class kF::Audio::Output final : public Device
 {
 public:
     /** @brief Audio callback functor */
-    using Callback = Core::TrivialFunctor<void(float * const, const std::uint32_t)>;
+    using Callback = Core::TrivialFunctor<void(float * const, const std::uint32_t, bool)>;
 
 
     /** @brief Destructor */
@@ -27,13 +27,13 @@ public:
 
     /** @brief Constructor */
     Output(const DeviceModel &deviceModel, const DeviceSpecs &deviceSpecs, Callback &&callback) noexcept
-        : Device(deviceModel, deviceSpecs), _callback(std::move(callback)) {}
+        : Device(deviceModel, deviceSpecs, false), _callback(std::move(callback)) {}
 
 
 private:
     /** @brief Audio callback */
-    void onAudioCallback(float * const data, const std::uint32_t blockSize) const noexcept final
-        { _callback(data, blockSize); }
+    void onAudioCallback(float * const data, const std::uint32_t channelSampleCount, const bool stereo) const noexcept final
+        { _callback(data, channelSampleCount, stereo); }
 
 
     Callback _callback {};

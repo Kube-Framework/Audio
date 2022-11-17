@@ -21,8 +21,11 @@ Audio::Manager::Manager(void) noexcept
         kFEnsure(!SDL_WasInit(SDL_INIT_AUDIO),
             "Audio::Manager: Manager already initialized");
 
-        kFEnsure(!SDL_AudioInit(nullptr),
+        kFEnsure(!SDL_Init(SDL_INIT_AUDIO),
             "Audio::Manager: Couldn't initialize SDL2 audio subsystem");
+
+        kFEnsure(SDL_WasInit(SDL_INIT_AUDIO),
+            "Audio::Manager: Audio initialization failed");
 
         return Driver(SDL_GetCurrentAudioDriver());
     }())
