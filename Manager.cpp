@@ -13,7 +13,7 @@ using namespace kF;
 
 Audio::Manager::~Manager(void) noexcept
 {
-    SDL_AudioQuit();
+    SDL_QuitSubSystem(SDL_INIT_AUDIO);
 }
 
 Audio::Manager::Manager(void) noexcept

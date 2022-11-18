@@ -38,9 +38,9 @@ Audio::Device::Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceS
     // Acquire device
     SDL_AudioSpec acquiredSpecs {};
     _id = SDL_OpenAudioDevice(deviceModel.data(), isCapture, &desiredSpecs, &acquiredSpecs, 0);
-    if (!_id)
+    if (_id <= 0)
         _id = SDL_OpenAudioDevice(nullptr, isCapture, &desiredSpecs, &acquiredSpecs, 0);
-    kFEnsure(_id, "Audio::Manager::OpenDevice: Couldn't open audio device: '", SDL_GetError());
+    kFEnsure(_id > 0, "Audio::Manager::OpenDevice: Couldn't open audio device: '", SDL_GetError());
 
     // Update stereo
     _stereo = acquiredSpecs.channels == 2;
