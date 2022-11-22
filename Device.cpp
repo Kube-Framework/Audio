@@ -28,7 +28,7 @@ Audio::Device::Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceS
             const auto audioDevice = reinterpret_cast<Device *>(device);
             audioDevice->onAudioCallback(
                 reinterpret_cast<float *>(data),
-                static_cast<std::uint32_t>(blockSize) / (sizeof(float) * static_cast<std::uint32_t>(audioDevice->_stereo + 1)),
+                static_cast<std::uint32_t>(blockSize) / (static_cast<std::uint32_t>(sizeof(float)) * static_cast<std::uint32_t>(audioDevice->_stereo + 1)),
                 audioDevice->_stereo
             );
         },
