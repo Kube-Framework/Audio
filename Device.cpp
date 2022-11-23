@@ -51,8 +51,7 @@ Audio::Device::Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceS
         " Channels ", static_cast<std::int64_t>(acquiredSpecs.channels),
         " Silence ", static_cast<std::int64_t>(acquiredSpecs.silence),
         " Samples ", static_cast<std::int64_t>(acquiredSpecs.samples),
-        " Byte size ", static_cast<std::int64_t>(acquiredSpecs.size),
-        "\n"
+        " Byte size ", static_cast<std::int64_t>(acquiredSpecs.size)
     );
 }
 
