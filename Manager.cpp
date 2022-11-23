@@ -17,17 +17,19 @@ Audio::Manager::~Manager(void) noexcept
 }
 
 Audio::Manager::Manager(void) noexcept
-    : _driver([] {
+    : _driver([this] {
         kFEnsure(!SDL_WasInit(SDL_INIT_AUDIO),
             "Audio::Manager: Manager already initialized");
 
         kFEnsure(!SDL_Init(SDL_INIT_AUDIO),
-            "Audio::Manager: Couldn't initialize SDL2 audio subsystem");
+            "Audio::Manager: Couldn't initialize SDL2 audio subsystem (", SDL_GetError(), ')');
 
         kFEnsure(SDL_WasInit(SDL_INIT_AUDIO),
             "Audio::Manager: Audio initialization failed");
 
-        return Driver(SDL_GetCurrentAudioDriver());
+        Driver driver(SDL_GetCurrentAudioDriver());
+        kFInfo("[Audio] Driver loaded '", driver, '\'');
+        return driver;
     }())
 {
 }
@@ -46,7 +48,9 @@ void Audio::Manager::setDriver(const Driver &driver) noexcept
 {
     _driver = driver;
     SDL_AudioQuit();
-    SDL_AudioInit(driver.data());
+    kFEnsure(!SDL_AudioInit(driver.data()),
+        "Audio::Manager: Couldn't initialize driver '", driver, "' (", SDL_GetError(), ')');
+    kFInfo("[Audio] Driver loaded '", driver, '\'');
 }
 
 Audio::DeviceModels Audio::Manager::getAvailableDeviceModels(const bool isCapture) const noexcept

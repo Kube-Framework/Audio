@@ -38,7 +38,7 @@ public:
     [[nodiscard]] Drivers getAvailableDrivers(void) const noexcept;
 
     /** @brief Get current driver */
-    [[nodiscard]] inline const Driver &driver(void) noexcept { return _driver; }
+    [[nodiscard]] inline const Driver &driver(void) noexcept;
 
     /** @brief Set current driver */
     void setDriver(const Driver &driver) noexcept;
