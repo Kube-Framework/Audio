@@ -5,6 +5,8 @@
 
 #include <SDL2/SDL.h>
 
+#include <Kube/Core/Abort.hpp>
+
 #include "Device.hpp"
 
 using namespace kF;
