@@ -41,6 +41,9 @@ public:
     Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceSpecs, const bool isCapture) noexcept;
 
 
+    /** @brief Check if device is started */
+    [[nodiscard]] inline bool started(void) const noexcept { return _started; }
+
     /** @brief Start the device */
     void start(void) const noexcept;
 
@@ -55,4 +58,5 @@ protected:
 
     std::uint32_t _id {};
     bool _stereo {};
+    bool _started {};
 };
