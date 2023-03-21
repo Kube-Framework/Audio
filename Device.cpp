@@ -57,12 +57,14 @@ Audio::Device::Device(const DeviceModel &deviceModel, const DeviceSpecs &deviceS
     );
 }
 
-void Audio::Device::start(void) const noexcept
+void Audio::Device::start(void) noexcept
 {
     SDL_PauseAudioDevice(_id, 0);
+    _started = true;
 }
 
-void Audio::Device::stop(void) const noexcept
+void Audio::Device::stop(void) noexcept
 {
     SDL_PauseAudioDevice(_id, 1);
+    _started = false;
 }

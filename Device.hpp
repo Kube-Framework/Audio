@@ -45,10 +45,10 @@ public:
     [[nodiscard]] inline bool started(void) const noexcept { return _started; }
 
     /** @brief Start the device */
-    void start(void) const noexcept;
+    void start(void) noexcept;
 
     /** @brief Stop the device */
-    void stop(void) const noexcept;
+    void stop(void) noexcept;
 
 
 protected:
