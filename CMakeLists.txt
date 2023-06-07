@@ -15,4 +15,7 @@ kube_add_library(Audio
     LIBRARIES
         Core
         SDL2::SDL2
+
+    INCLUDES
+        ${SDL2_INCLUDE_DIR}/..
 )

@@ -17,7 +17,7 @@ Audio::Manager::~Manager(void) noexcept
 }
 
 Audio::Manager::Manager(void) noexcept
-    : _driver([this] {
+    : _driver([] {
         kFEnsure(!SDL_WasInit(SDL_INIT_AUDIO),
             "Audio::Manager: Manager already initialized");
 
@@ -56,7 +56,7 @@ void Audio::Manager::setDriver(const Driver &driver) noexcept
 Audio::DeviceModels Audio::Manager::getAvailableDeviceModels(const bool isCapture) const noexcept
 {
     const auto deviceCount = SDL_GetNumAudioDevices(isCapture);
-    DeviceModels deviceModels(deviceCount);
+    DeviceModels deviceModels(static_cast<std::uint32_t>(deviceCount));
 
     for (auto i = 0; i != deviceCount; ++i)
         deviceModels[static_cast<std::uint32_t>(i)] = SDL_GetAudioDeviceName(i, isCapture);
